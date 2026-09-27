@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hard Workers' Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Hard Workers' Arcade home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>HARD WORKERS'<br /><strong>ARCADE</strong></span>
+        </a>
+        <div class="header-stats">
+          <div class="stat-pill"><span class="ticket-icon">◆</span><span id="ticket-count">120</span> TICKETS</div>
+          <div class="streak-pill"><span class="flame">✦</span><span id="streak-count">3</span> DAY STREAK</div>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">WELCOME BACK, BRANDON <span class="signal-dot"></span></p>
+            <h1>Make your next<br /><em>move count.</em></h1>
+            <p class="hero-copy">The wheel picks the mission.<br />You make it happen.</p>
+          </div>
+          <div class="hero-meta">
+            <span class="status-light"></span> ARCADE STATUS: <strong>OPEN</strong>
+          </div>
+        </section>
+
+        <section class="return-strip" id="return-strip">
+          <div class="return-icon">★</div>
+          <div class="return-copy"><strong id="return-title">TODAY'S BONUS IS READY</strong><span id="return-message">Complete your first mission today for +50 bonus tickets.</span></div>
+          <div class="return-rule"><span class="status-light"></span> SAVES AUTOMATICALLY</div>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel wheel-panel">
+            <div class="panel-heading">
+              <div><span class="section-number">01</span><h2>THE NEXT UP WHEEL</h2></div>
+              <span class="live-tag">LIVE</span>
+            </div>
+            <p class="panel-intro">No overthinking. Spin to lock in what’s next.</p>
+            <div class="wheel-stage">
+              <div class="pointer" aria-hidden="true"></div>
+              <div class="wheel-wrap"><canvas id="wheel" width="500" height="500" aria-label="Task selection wheel"></canvas><div class="wheel-center"><span>SPIN</span><small>TO PLAY</small></div></div>
+            </div>
+            <button class="primary-btn" id="spin-btn"><span class="btn-icon">↻</span> SPIN THE WHEEL <kbd>SPACE</kbd></button>
+            <p class="microcopy" id="spin-hint">You have 5 tasks queued. The wheel is ready.</p>
+          </article>
+
+          <aside class="right-rail">
+            <article class="panel active-panel" id="active-panel">
+              <div class="panel-heading compact"><div><span class="section-number">02</span><h2>NOW PLAYING</h2></div><span class="coin-badge">1×</span></div>
+              <div class="empty-active" id="empty-active"><span class="empty-icon">?</span><p>Your next mission<br /><strong>will appear here.</strong></p><span class="mini-label">SPIN THE WHEEL TO BEGIN</span></div>
+              <div class="task-active hidden" id="task-active"><div class="active-kicker">CURRENT MISSION</div><h3 id="active-name">Practice scales</h3><p id="active-detail">Your selected task is ready when you are.</p><div class="active-footer"><span id="active-reward">+25 tickets</span><button class="complete-btn" id="complete-btn">MARK COMPLETE <span>✓</span></button></div></div>
+            </article>
+            <article class="panel reward-panel">
+              <div class="panel-heading compact"><div><span class="section-number">03</span><h2>PRIZE COUNTER</h2></div><span class="ticket-mini">◆</span></div>
+              <div class="reward-progress"><div class="reward-label"><span id="next-prize-label">NEXT PRIZE</span><strong id="progress-text">120 / 250</strong></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div>
+              <div class="prize-shelf" id="prize-shelf"></div>
+              <button class="secondary-btn" id="redeem-btn" disabled>REDEEM NEXT PRIZE <span>→</span></button>
+            </article>
+          </aside>
+        </section>
+
+        <section class="tasks-section">
+          <div class="section-head"><div><p class="eyebrow">YOUR QUEUE <span class="count-badge" id="task-count">5</span></p><h2>MISSIONS ON DECK</h2></div><button class="add-btn" id="open-add">+ ADD A MISSION</button></div>
+          <div class="task-list" id="task-list"></div>
+        </section>
+      </main>
+
+      <footer><span>INSERT COIN. DO THE THING.</span><span>© HARD WORKERS' ARCADE / SESSION 01</span></footer>
+    </div>
+
+    <dialog id="task-dialog">
+      <form method="dialog" id="task-form" class="dialog-card">
+        <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+        <p class="eyebrow">NEW MISSION</p><h2>Add something<br /><em>worth winning.</em></h2>
+        <label for="new-task">What needs doing?</label><input id="new-task" maxlength="44" placeholder="e.g. Reply to emails" required />
+        <label for="new-detail">Optional note</label><input id="new-detail" maxlength="70" placeholder="Make it easier for future you" />
+        <div class="dialog-actions"><button class="secondary-btn" value="cancel">CANCEL</button><button class="primary-btn" value="default">ADD TO QUEUE <span>→</span></button></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="celebration" id="celebration" aria-live="polite"><div class="celebration-card"><span class="jackpot-mark">✦</span><strong>MISSION CLEAR!</strong><span id="celebration-copy">+60 TICKETS</span></div><div class="confetti" id="confetti" aria-hidden="true"></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
